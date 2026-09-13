@@ -1,0 +1,38 @@
+{
+  "name": "mcp-pionex-management",
+  "version": "0.1.0",
+  "description": "A stdio MCP server for the public Pionex REST APIs",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "mcp-pionex-management": "dist/server.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node scripts/clean-dist.mjs && tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx src/server.ts",
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "generate:catalog": "tsx scripts/generate-catalog.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^5.0.0",
+    "yaml": "^2.8.0"
+  }
+}

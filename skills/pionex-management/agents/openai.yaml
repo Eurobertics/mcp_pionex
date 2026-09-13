@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pionex Management"
+  short_description: "Pionex sicher analysieren und verwalten"
+  default_prompt: "Nutze $pionex-management, um mein Pionex-Konto zu analysieren oder eine klar benannte Aktion sicher auszuführen."
