@@ -1,5 +1,5 @@
 {
-  "name": "mcp-pionex-management",
+  "name": "mcp-pionex",
   "version": "0.1.0",
   "description": "A stdio MCP server for the public Pionex REST APIs",
   "type": "module",
