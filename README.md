@@ -75,6 +75,36 @@ Beispiel einer generischen MCP-Konfiguration:
 }
 ```
 
+### Start aus Windows über WSL
+
+Wenn der MCP-Host unter Windows läuft, das Projekt und Node.js aber in WSL liegen, kann der Server über `wsl.exe` gestartet werden. Ersetze `Ubuntu-24.04` durch den Namen aus `wsl.exe --list --verbose` und passe den Linux-Pfad zum Projekt an:
+
+```json
+{
+  "mcpServers": {
+    "pionex": {
+      "command": "wsl.exe",
+      "args": [
+        "-d",
+        "Ubuntu-24.04",
+        "--exec",
+        "node",
+        "/home/eurobertics/projects/mcp_pionex_management/dist/server.js"
+      ],
+      "env": {
+        "WSLENV": "PIONEX_API_KEY/u:PIONEX_API_SECRET/u:PIONEX_ALLOWED_SYMBOLS/u:PIONEX_MAX_ORDER_QUOTE_AMOUNT/u:PIONEX_MAX_ORDER_BASE_SIZE/u:PIONEX_MAX_BATCH_ORDERS/u:PIONEX_MAX_BOT_INVESTMENT/u",
+        "PIONEX_API_KEY": "...",
+        "PIONEX_API_SECRET": "...",
+        "PIONEX_ALLOWED_SYMBOLS": "BTC_USDT,ETH_USDT",
+        "PIONEX_MAX_ORDER_QUOTE_AMOUNT": "250"
+      }
+    }
+  }
+}
+```
+
+`WSLENV` sorgt dafür, dass die genannten Variablen aus dem Windows-Prozess an den Linux-Prozess weitergereicht werden. Werden weitere `PIONEX_*`-Variablen in `env` ergänzt, müssen sie ebenfalls in `WSLENV` mit dem Suffix `/u` aufgeführt werden. Existiert bereits ein eigener `WSLENV`-Wert, sind dessen Einträge zu erhalten und um diese Namen zu ergänzen.
+
 ## Sicherheitsverhalten
 
 - Schreibende Tools sind per MCP-Annotation als destruktiv markiert.
